@@ -1,0 +1,264 @@
+{
+  "name": "runcmd",
+  "displayName": "runCMD",
+  "description": "run cmd in vscode",
+  "version": "0.0.1",
+  "publisher": "KhanhTungMTP",
+  "engines": {
+    "vscode": "^1.89.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "keywords": [
+    "Terminal",
+    "CMD",
+    "PowerShell",
+    "Command",
+    "Commands",
+    "Shortcuts",
+    "CLI",
+    "Command Line",
+    "Run"
+  ],
+  "activationEvents": [],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "extension.runCMD",
+        "title": "Run Terminal Command..."
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "extension.runCMD",
+        "key": "ctrl+alt+t",
+        "mac": "cmd+alt+t"
+      }
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "command": "extension.runCMD",
+          "group": "navigation@6"
+        }
+      ]
+    },
+    "configuration": [
+      {
+        "title": "Run Terminal Command",
+        "properties": {
+          "runCMD.commands": {
+            "type": "array",
+            "items": {
+              "type": [
+                "object"
+              ],
+              "properties": {
+                "command": {
+                  "type": "string",
+                  "description": "The text to send to the terminal."
+                },
+                "auto": {
+                  "type": "boolean",
+                  "description": "Whether to add a new line to the text being sent, this is normally required to run a command in the terminal."
+                },
+                "preserve": {
+                  "type": "boolean",
+                  "description": "Don't dispose of terminal running this command."
+                },
+                "name": {
+                  "type": "string",
+                  "description": "Name for the command. A human readable string which is rendered prominent."
+                },
+                "group": {
+                  "type": "string",
+                  "description": "Commands sharing the group name will be grouped together in the menu."
+                }
+              }
+            },
+            "default": [
+              {
+                "command": "dotnet build",
+                "name": "Build API",
+                "group": ".NET Core",
+                "auto": true
+              },
+              {
+                "command": "dotnet watch run",
+                "name": "Run API",
+                "group": ".NET Core",
+                "auto": true,
+                "preserve": true
+              },
+              {
+                "command": "npm start",
+                "name": "Run SPA",
+                "group": "Angular",
+                "auto": true,
+                "preserve": true
+              },
+              {
+                "command": "ng s --o --hmr",
+                "name": "Run SPA HMR",
+                "group": "Angular",
+                "auto": true,
+                "preserve": true
+              },
+              {
+                "command": "ng g c ",
+                "name": "Generate Component",
+                "group": "Angular"
+              },
+              {
+                "command": "ng g m --routing ",
+                "name": "Generate Module with routing",
+                "group": "Angular"
+              },
+              {
+                "command": "ng generate service ",
+                "name": "Generate Service",
+                "group": "Angular"
+              },
+              {
+                "command": "ng generate guard ",
+                "name": "Generate Guard",
+                "group": "Angular"
+              },
+              {
+                "command": "ng generate directive ",
+                "name": "Generate Directive",
+                "group": "Angular"
+              },
+              {
+                "command": "ng generate interceptor ",
+                "name": "Generate Interceptor",
+                "group": "Angular"
+              },
+              {
+                "command": "ng generate pipe ",
+                "name": "Generate Pipe",
+                "group": "Angular"
+              },
+              {
+                "command": "ng generate resolver ",
+                "name": "Generate Pipe",
+                "group": "Angular"
+              },
+              {
+                "command": "ng generate enum ",
+                "name": "Generate Enum",
+                "group": "Angular"
+              },
+              {
+                "command": "ng generate interface ",
+                "name": "Generate Interface",
+                "group": "Angular"
+              },
+              {
+                "command": "ng generate class ",
+                "name": "Generate Class",
+                "group": "Angular"
+              },
+              {
+                "command": "ng generate environments",
+                "name": "Generate Environments",
+                "group": "Angular"
+              },
+              {
+                "command": "ng generate application ",
+                "name": "Create Application",
+                "group": "Angular"
+              },
+              {
+                "command": "dotnet add package {clipboard}",
+                "auto": true,
+                "group": ".NET Core"
+              },
+              {
+                "command": "dotnet add page -n ",
+                "group": ".NET Core"
+              },
+              {
+                "command": "git rebase -i head~",
+                "name": "Rebase",
+                "group": "Git"
+              },
+              {
+                "command": "git branch | ForEach-Object { $_ = $_.Trim(); if ($_ -ne \"develop\" -and $_ -ne \"master\") { git branch -D $_ }}",
+                "auto": true,
+                "name": "Delete all brand local",
+                "group": "Git"
+              },
+              {
+                "command": "nvm use 16.20.0",
+                "auto": true,
+                "name": "Use Node Ver 16.20.0",
+                "group": "Change Node Version"
+              },
+              {
+                "command": "nvm use 20.11.1",
+                "auto": true,
+                "name": "Use Node Ver 20.11.1",
+                "group": "Change Node Version"
+              },
+              {
+                "command": "nvm use 18.16.0",
+                "auto": true,
+                "preserve": false,
+                "name": "Use Node Ver 18.16.0",
+                "group": "Change Node Version"
+              },
+              {
+                "command": "vsce package",
+                "auto": true,
+                "name": "Build Extension",
+                "group": "Change Node Version"
+              },
+              {
+                "command": "dotnet publish -o ",
+                "auto": true,
+                "name": "Publish .NET Core",
+                "group": "Up Sever"
+              },
+              {
+                "command": "ng build --configuration production --aot=true --build-optimizer=true --output-hashing=all",
+                "auto": true,
+                "name": "Publish Angular",
+                "group": "Up Sever"
+              }
+            ]
+          }
+        }
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "yarn run package",
+    "compile": "yarn run check-types && yarn run lint && node esbuild.js",
+    "watch": "npm-run-all -p watch:*",
+    "watch:esbuild": "node esbuild.js --watch",
+    "watch:tsc": "tsc --noEmit --watch --project tsconfig.json",
+    "package": "yarn run check-types && yarn run lint && node esbuild.js --production",
+    "compile-tests": "tsc -p . --outDir out",
+    "watch-tests": "tsc -p . -w --outDir out",
+    "pretest": "yarn run compile-tests && yarn run compile && yarn run lint",
+    "check-types": "tsc --noEmit",
+    "lint": "eslint src --ext ts",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.89.0",
+    "@types/mocha": "^10.0.6",
+    "@types/node": "18.x",
+    "@typescript-eslint/eslint-plugin": "^7.7.1",
+    "@typescript-eslint/parser": "^7.7.1",
+    "eslint": "^8.57.0",
+    "esbuild": "^0.20.2",
+    "npm-run-all": "^4.1.5",
+    "typescript": "^5.4.5",
+    "@vscode/test-cli": "^0.0.9",
+    "@vscode/test-electron": "^2.3.9"
+  }
+}
